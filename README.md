@@ -1,8 +1,18 @@
 # Hack Together: Microsoft Graph and .NET 🦒
 
-This is a Microsoft Graph sample code forked from [Hackathon repo](https://github.com/microsoft/hack-together/tree/main/templates/dotnet-blazor-server-app-microsoft-graph).
+### Project name: Displaying employee info and emails via Microsoft Graph 
+### Description:
 
+**Here is the outcome:**
+[Try it out](https://blazor-graph.azurewebsites.net/)
 ![image](https://user-images.githubusercontent.com/43414651/225232638-7505a775-f267-4047-b853-e971c5f7a857.png)
+
+By participating **Hack Together: Microsoft Graph and .NET** hackathon as beginners, we downloaded the sample code from [here](https://github.com/microsoft/hack-together/tree/main/templates/dotnet-blazor-server-app-microsoft-graph)
+
+We created a new app registration **Hackathon.Graph.Blazor** under our coporate POC Azure subscription and configured the post-login-return-url as below:
+![image](https://user-images.githubusercontent.com/43414651/225235953-7e2139d9-cf92-4f0c-935a-b4d78af1e5f6.png)
+
+We enriched the sample application by retrieving additional personal info and display first 10 email subjects via  Microsoft Graph .
 
 #### 1.To retrieve personal info like: name, mobile number, job title, and etc
     <table class="table table-striped table-condensed" style="font-family: monospace">
@@ -40,6 +50,7 @@ This is a Microsoft Graph sample code forked from [Hackathon repo](https://githu
         <p>@message.Subject</p>
     }
     
+   
 ### Reference
 * [Explore Microsoft Graph scenarios for ASP.NET Core development](https://learn.microsoft.com/en-us/training/paths/m365-msgraph-dotnet-core-scenarios/)
 * [.NET Core Razor Pages with Microsoft Graph](https://github.com/microsoftdocs/mslearn-m365-microsoftgraph-dotnetcorerazor)
