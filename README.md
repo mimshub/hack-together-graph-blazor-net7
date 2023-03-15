@@ -5,7 +5,7 @@
 
 **Here is the outcome:**
 [Try it out](https://blazor-graph.azurewebsites.net/)
-![image](https://user-images.githubusercontent.com/43414651/225232638-7505a775-f267-4047-b853-e971c5f7a857.png)
+![Untitled video - Made with Clipchamp (3)](https://user-images.githubusercontent.com/43414651/225307528-d8c9c486-09b1-440c-8d44-6ce7a84073c0.gif)
 
 By participating **Hack Together: Microsoft Graph and .NET** hackathon as beginners, we downloaded the sample code from [here](https://github.com/microsoft/hack-together/tree/main/templates/dotnet-blazor-server-app-microsoft-graph)
 
@@ -95,11 +95,7 @@ We enriched the sample application by retrieving additional personal info and di
     };
     await _graphServiceClient.Me.SendMail(message).Request().PostAsync();
     
-![image](https://user-images.githubusercontent.com/43414651/225301601-a1838fd1-979e-4d76-8940-80a3f4e5fdaa.png)
-
-By requesting additional scopes "presence.read mailboxsettings.read mail.read mail.send calendars.read files.readwrite", it requires users' consent.
-![image](https://user-images.githubusercontent.com/43414651/225240599-17f2e0d3-f0de-47be-81b1-1798c6ffecb5.png)
-   
+![image](https://user-images.githubusercontent.com/43414651/225301601-a1838fd1-979e-4d76-8940-80a3f4e5fdaa.png)   
    
 ### Reference
 * [Explore Microsoft Graph scenarios for ASP.NET Core development](https://learn.microsoft.com/en-us/training/paths/m365-msgraph-dotnet-core-scenarios/)
