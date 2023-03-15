@@ -1,13 +1,8 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Graph = Microsoft.Graph;
 using BlazorSample.Data;
+using BlazorSample.Graph;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +11,9 @@ var initialScopes = builder.Configuration["DownstreamApi:Scopes"]?.Split(' ');
 
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
-        .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-            .AddMicrosoftGraph(builder.Configuration.GetSection("DownstreamApi"))
-            .AddInMemoryTokenCaches();
+    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+    .AddMicrosoftGraph(builder.Configuration.GetSection("DownstreamApi"))
+    .AddInMemoryTokenCaches();
 builder.Services.AddControllersWithViews()
     .AddMicrosoftIdentityUI();
 
@@ -32,6 +27,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddScoped<GraphProfileClient>();
+builder.Services.AddScoped<GraphEmailClient>();
 
 var app = builder.Build();
 
