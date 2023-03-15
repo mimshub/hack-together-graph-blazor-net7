@@ -1,7 +1,9 @@
 ﻿@page "/emails"
-
+@inject MicrosoftIdentityConsentAndConditionalAccessHandler ConsentHandler
 @using Microsoft.Graph
 @using BlazorSample.Graph
+@using Microsoft.Identity.Client;
+@using Microsoft.Identity.Web;
 @inject GraphEmailClient _GraphEmailClient;
 
 <h3>Emails</h3>
@@ -21,10 +23,19 @@ else
 @code {
 
     private  IEnumerable<Message>? _messages;
-    
+
     protected override async Task OnInitializedAsync()
     {
-        _messages = await _GraphEmailClient.GetUserMessages();
+        try
+        {
+
+            _messages = await _GraphEmailClient.GetUserMessages();
+        }
+        catch (Exception ex)
+        {
+            ConsentHandler.HandleException(ex);
+
+        }
     }
-    
+
 }
