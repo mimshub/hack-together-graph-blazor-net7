@@ -1,6 +1,6 @@
 ## Hack Together: Microsoft Graph and .NET 🦒
 
-### Project name: Displaying personal info and email subjects via Microsoft Graph 
+### Project name: Displaying personal info and send an email via Microsoft Graph 
 ### Description:
 
 **Here is the outcome:**
@@ -14,7 +14,7 @@ We created a new app registration **Hackathon.Graph.Blazor** under our coporate 
 
 We enriched the sample application by retrieving additional personal info and display first 10 email subjects via  Microsoft Graph .
 
-#### 1.To retrieve personal info like: name, mobile number, job title, and etc
+#### 1. Display personal info like: name, mobile number, job title, and etc
     <table class="table table-striped table-condensed" style="font-family: monospace">
         <tr>
             <th>Property</th>
@@ -43,16 +43,63 @@ We enriched the sample application by retrieving additional personal info and di
     </table>
 
 
-#### 2.To retrieve top 10 email messages and display their subjects
+#### 2. Displaying first 25 email messages
 
-    foreach (var message in _messages)
-    {
-        <p>@message.Subject</p>
-    }
+    <h4 class="text-primary">Top 25 Emails</h4>
+    <div class="table-responsive">
+        <table class="table table-hover table-borderless">
+        <thead>
+            <tr>
+                <td>From</td>
+                <td>Subject</td>
+                <td>Received at</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in _messages)
+            {
+                <tr>
+                    <td class="text-primary text-decoration-underline">@(message.From.EmailAddress.Address)</td>
+                    <td>@message.Subject</td>
+                    <td class="text-nowrap">@(message.ReceivedDateTime.Value.ToLocalTime().ToString())</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
     
-![image](https://user-images.githubusercontent.com/43414651/225238304-d75b559d-2100-4c16-9b11-30d53c642421.png)
+![image](https://user-images.githubusercontent.com/43414651/225302745-c60abab1-a56c-4dd0-a0c2-be95115c6354.png)
 
-By requesting additional scopes "presence.read mailboxsettings.read mail.read calendars.read files.readwrite", it requires users' consent.
+
+#### 3. Send an email via Microsoft Graph
+
+public async Task SendEmailAsync(string to, string subject, string body)
+        {
+            var message = new Message
+            {
+                Subject = subject,
+                Body = new ItemBody
+                {
+                    Content = body,
+                    ContentType = BodyType.Text
+                },
+                ToRecipients = new Recipient[]
+                {
+                    new Recipient
+                    {
+                        EmailAddress = new EmailAddress
+                        {
+                            Address = to
+                        }
+                    }
+                }
+            };
+            await _graphServiceClient.Me.SendMail(message).Request().PostAsync();
+        }
+![image](https://user-images.githubusercontent.com/43414651/225301601-a1838fd1-979e-4d76-8940-80a3f4e5fdaa.png)
+
+By requesting additional scopes "presence.read mailboxsettings.read mail.read mail.send calendars.read files.readwrite", it requires users' consent.
 ![image](https://user-images.githubusercontent.com/43414651/225240599-17f2e0d3-f0de-47be-81b1-1798c6ffecb5.png)
    
    
