@@ -51,6 +51,10 @@ We enriched the sample application by retrieving additional personal info and di
     }
     
 ![image](https://user-images.githubusercontent.com/43414651/225238304-d75b559d-2100-4c16-9b11-30d53c642421.png)
+
+By requesting additional scopes "presence.read mailboxsettings.read mail.read calendars.read files.readwrite", it requires users' consent.
+![image](https://user-images.githubusercontent.com/43414651/225240599-17f2e0d3-f0de-47be-81b1-1798c6ffecb5.png)
+   
    
 ### Reference
 * [Explore Microsoft Graph scenarios for ASP.NET Core development](https://learn.microsoft.com/en-us/training/paths/m365-msgraph-dotnet-core-scenarios/)
