@@ -7,6 +7,8 @@
         Email has been sent to @SendEmailModel.ToAddress
     </div>
     <button class="btn btn-primary" @onclick="Reset">Send Email Again</button>
+    <button class="btn btn-secondary" type="button" @onclick="NavigateBackToEmailList">Back To Email List</button>
+
 }
 else if (IsSubmitted && !string.IsNullOrEmpty(ErrorMessage))
 {
@@ -17,14 +19,12 @@ else if (IsSubmitted && !string.IsNullOrEmpty(ErrorMessage))
         </p>
     </div>
     <button class="btn btn-primary" @onclick="Reset">Send Email Again</button>
+    <button class="btn btn-secondary" type="button" @onclick="NavigateBackToEmailList">Back To Email List</button>
+
 }
 else if(!IsSubmitted)
 {
-    <p class="text-primary">
-        Hi @CurrentUser? Feel free to send any email to other recipient 😉
-    </p>
-
-    <div class="card">
+   <div class="card">
         <div class="card-body">
             <EditForm Model="@SendEmailModel"
                   OnValidSubmit="@Send">
@@ -50,6 +50,8 @@ else if(!IsSubmitted)
                 </div>
                 <div class="mb-2">
                     <button class="btn btn-primary" type="submit">Send</button>
+                    <button class="btn btn-secondary" type="button" @onclick="NavigateBackToEmailList">Back To Email List</button>
+
                 </div>
             </EditForm>
         </div>

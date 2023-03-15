@@ -14,15 +14,40 @@
 }
 else
 {
-    foreach (var message in _messages)
-    {
-        <p>@message.Subject</p>
-    }
+    <div class="mb-5 mt-2">
+        <button class="btn btn-outline-primary" @onclick="NavigateToSendEmail">Send Email</button>
+    </div>
+    <h4 class="text-primary">Top 25 Emails</h4>
+    <div class="table-responsive">
+        <table class="table table-hover table-borderless">
+        <thead>
+            <tr>
+                <td>From</td>
+                <td>Subject</td>
+                <td>Received at</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in _messages)
+            {
+                <tr>
+                    <td class="text-primary text-decoration-underline">@(message.From.EmailAddress.Address)</td>
+                    <td>@message.Subject</td>
+                    <td class="text-nowrap">@(message.ReceivedDateTime.Value.ToLocalTime().ToString())</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+   
 }
 
 @code {
 
     private  IEnumerable<Message>? _messages;
+    [Inject]
+    private NavigationManager _navigationManager { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -36,6 +61,12 @@ else
             ConsentHandler.HandleException(ex);
 
         }
+    }
+
+    protected void NavigateToSendEmail()
+    {
+        _navigationManager.NavigateTo("/send-email");
+
     }
 
 }

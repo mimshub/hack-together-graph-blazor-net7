@@ -17,16 +17,17 @@ namespace BlazorSample.Graph
         {
             try
             {
-                var emails = await _graphServiceClient.Me.Messages
+                var emails = await _graphServiceClient.Me.MailFolders["Inbox"].Messages
                             .Request()
                             .Select(msg => new
                             {
+                                msg.From,
                                 msg.Subject,
                                 msg.BodyPreview,
                                 msg.ReceivedDateTime
                             })
                             .OrderBy("receivedDateTime desc")
-                            .Top(10)
+                            .Top(25)
                             .GetAsync();
 
                 return emails.CurrentPage;

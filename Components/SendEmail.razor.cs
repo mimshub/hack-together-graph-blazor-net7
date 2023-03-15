@@ -3,7 +3,7 @@ using BlazorSample.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Identity.Web;
 
-namespace BlazorSample.Pages
+namespace BlazorSample.Components
 {
     public partial class SendEmail
     {
@@ -13,30 +13,16 @@ namespace BlazorSample.Pages
         [Inject]
         private GraphEmailClient _graphEmailClient { get; set; }
 
-        [Inject] GraphProfileClient _graphProfileClient { get; set; }
+        [Inject]
+        private NavigationManager _navigationManager { get; set; }
 
         public SendEmailModel SendEmailModel { get; set; }
-        public string CurrentUser { get; set; }
         public bool IsSubmitted { get; set; }
         public string ErrorMessage { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            try
-            {
-                SendEmailModel = new SendEmailModel();
-                var user = await _graphProfileClient.GetUserProfile();
-                if (user != null)
-                {
-                    CurrentUser = user.DisplayName;
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-                _consentHandler.HandleException(ex);
-
-            }
+            SendEmailModel = new SendEmailModel();
         }
 
         protected void Reset()
@@ -66,6 +52,12 @@ namespace BlazorSample.Pages
                 _consentHandler.HandleException(ex);
 
             }
+        }
+
+        protected void NavigateBackToEmailList()
+        {
+            _navigationManager.NavigateTo("/emails");
+
         }
     }
 }
