@@ -1,6 +1,6 @@
-# Hack Together: Microsoft Graph and .NET 🦒
+## Hack Together: Microsoft Graph and .NET 🦒
 
-### Project name: Displaying employee info and emails via Microsoft Graph 
+### Project name: Displaying personal info and email subjects via Microsoft Graph 
 ### Description:
 
 **Here is the outcome:**
@@ -50,6 +50,7 @@ We enriched the sample application by retrieving additional personal info and di
         <p>@message.Subject</p>
     }
     
+![image](https://user-images.githubusercontent.com/43414651/225238304-d75b559d-2100-4c16-9b11-30d53c642421.png)
    
 ### Reference
 * [Explore Microsoft Graph scenarios for ASP.NET Core development](https://learn.microsoft.com/en-us/training/paths/m365-msgraph-dotnet-core-scenarios/)
