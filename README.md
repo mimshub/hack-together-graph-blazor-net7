@@ -74,29 +74,27 @@ We enriched the sample application by retrieving additional personal info and di
 
 #### 3. Send an email via Microsoft Graph
 
-public async Task SendEmailAsync(string to, string subject, string body)
+    var message = new Message
+    {
+        Subject = subject,
+        Body = new ItemBody
         {
-            var message = new Message
+            Content = body,
+            ContentType = BodyType.Text
+        },
+        ToRecipients = new Recipient[]
+        {
+            new Recipient
             {
-                Subject = subject,
-                Body = new ItemBody
+                EmailAddress = new EmailAddress
                 {
-                    Content = body,
-                    ContentType = BodyType.Text
-                },
-                ToRecipients = new Recipient[]
-                {
-                    new Recipient
-                    {
-                        EmailAddress = new EmailAddress
-                        {
-                            Address = to
-                        }
-                    }
+                    Address = to
                 }
-            };
-            await _graphServiceClient.Me.SendMail(message).Request().PostAsync();
+            }
         }
+    };
+    await _graphServiceClient.Me.SendMail(message).Request().PostAsync();
+    
 ![image](https://user-images.githubusercontent.com/43414651/225301601-a1838fd1-979e-4d76-8940-80a3f4e5fdaa.png)
 
 By requesting additional scopes "presence.read mailboxsettings.read mail.read mail.send calendars.read files.readwrite", it requires users' consent.
