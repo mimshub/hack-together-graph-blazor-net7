@@ -3,8 +3,7 @@
 ### Project name: Displaying personal info and send an email via Microsoft Graph 
 ### Description:
 
-**Here is the outcome:**
-[Try it out](https://blazor-graph.azurewebsites.net/)
+[[Try it out](https://blazor-graph.azurewebsites.net/)](https://blazor-graph.azurewebsites.net/)
 ![Untitled video - Made with Clipchamp (3)](https://user-images.githubusercontent.com/43414651/225307528-d8c9c486-09b1-440c-8d44-6ce7a84073c0.gif)
 
 By participating **Hack Together: Microsoft Graph and .NET** hackathon as beginners, we downloaded the sample code from [here](https://github.com/microsoft/hack-together/tree/main/templates/dotnet-blazor-server-app-microsoft-graph)
