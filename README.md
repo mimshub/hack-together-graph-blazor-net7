@@ -41,9 +41,9 @@ This is a Microsoft Graph sample code forked from [Hackathon repo](https://githu
     }
     
 ### Reference
-
-* [Tutorial: Create a Blazor Server app that uses the Microsoft identity platform for authentication](https://learn.microsoft.com/azure/active-directory/develop/tutorial-blazor-server)
-* [Quickstart: Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app)
+* [Explore Microsoft Graph scenarios for ASP.NET Core development](https://learn.microsoft.com/en-us/training/paths/m365-msgraph-dotnet-core-scenarios/)
+* [.NET Core Razor Pages with Microsoft Graph](https://github.com/microsoftdocs/mslearn-m365-microsoftgraph-dotnetcorerazor)
+* [Hack Together: Microsoft Graph and .NET ](https://github.com/microsoft/hack-together)
 
 ### Contributors
 * [Ron Zhong](https://github.com/ron-zhong)
