@@ -343,5 +343,4 @@ healthchecksdb
 
 
 *.xlsx
-/20 SSO/MIMS.SSO.IDP/keys
-SwaggerAnnotation.xml
+obj/

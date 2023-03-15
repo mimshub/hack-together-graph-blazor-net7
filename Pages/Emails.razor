@@ -1,0 +1,30 @@
+﻿@page "/emails"
+
+@using Microsoft.Graph
+@using BlazorSample.Graph
+@inject GraphEmailClient _GraphEmailClient;
+
+<h3>Emails</h3>
+
+@if (_messages is null)
+{
+    <i>loading email inbox in progress...</i>
+}
+else
+{
+    foreach (var message in _messages)
+    {
+        <p>@message.Subject</p>
+    }
+}
+
+@code {
+
+    private  IEnumerable<Message>? _messages;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _messages = await _GraphEmailClient.GetUserMessages();
+    }
+    
+}
