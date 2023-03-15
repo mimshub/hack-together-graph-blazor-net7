@@ -1,0 +1,59 @@
+﻿@page "/send-email"
+<h3>Send Email</h3>
+
+@if(IsSubmitted && string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-success">
+        Email has been sent to @SendEmailModel.ToAddress
+    </div>
+    <button class="btn btn-primary" @onclick="Reset">Send Email Again</button>
+    <button class="btn btn-secondary" type="button" @onclick="NavigateBackToEmailList">Back To Email List</button>
+
+}
+else if (IsSubmitted && !string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger">
+        <p>An error occured while sending the email. Please contact your admin</p>
+        <p class="text-danger">
+            @ErrorMessage
+        </p>
+    </div>
+    <button class="btn btn-primary" @onclick="Reset">Send Email Again</button>
+    <button class="btn btn-secondary" type="button" @onclick="NavigateBackToEmailList">Back To Email List</button>
+
+}
+else if(!IsSubmitted)
+{
+   <div class="card">
+        <div class="card-body">
+            <EditForm Model="@SendEmailModel"
+                  OnValidSubmit="@Send">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <div class="mb-3">
+                    <label for="toAddress" class="form-label">To Address:</label>
+                    <InputText id="toAddress" class="form-control" @bind-Value="@SendEmailModel.ToAddress"
+                           placeholder="Enter to email address"></InputText>
+                    <ValidationMessage For="() => SendEmailModel.ToAddress" class="mt-1 text-danger"></ValidationMessage>
+                </div>
+                 <div class="mb-3">
+                    <label for="subject" class="form-label">Subject:</label>
+                    <InputText id="subject" class="form-control" @bind-Value="@SendEmailModel.Subject"
+                           placeholder="Enter subject"></InputText>
+                    <ValidationMessage For="() => SendEmailModel.Subject" class="mt-1 text-danger"></ValidationMessage>
+                </div>
+                <div class="mb-4">
+                    <label for="body" class="form-label">Body:</label>
+                    <InputTextArea id="body" class="form-control" @bind-Value="@SendEmailModel.Body"
+                               placeholder="Enter email body">
+                    </InputTextArea>
+                    <ValidationMessage For="() => SendEmailModel.Body" class="mt-1 text-danger"></ValidationMessage>
+                </div>
+                <div class="mb-2">
+                    <button class="btn btn-primary" type="submit">Send</button>
+                    <button class="btn btn-secondary" type="button" @onclick="NavigateBackToEmailList">Back To Email List</button>
+
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
